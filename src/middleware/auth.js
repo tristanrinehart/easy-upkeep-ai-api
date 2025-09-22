@@ -14,6 +14,7 @@ export function setAuthCookie(res, payload) {
     httpOnly: true,
     sameSite: "lax",
     secure: env.NODE_ENV === "production",
+    path: "/",
     maxAge: 30 * 24 * 60 * 60 * 1000
   });
 }
