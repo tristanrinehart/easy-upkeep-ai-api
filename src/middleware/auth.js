@@ -17,10 +17,16 @@ export function setAuthCookie(res, payload) {
     path: "/",
     maxAge: 30 * 24 * 60 * 60 * 1000
   });
+  console.log(`[auth] set auth cookie. httpOnly, sameSite=lax, secure= ${env.NODE_ENV === "production"}`);
 }
 
 export function clearAuthCookie(res) {
-  res.clearCookie("eua_token", { httpOnly: true, sameSite: "lax", secure: env.NODE_ENV === "production" });
+  res.clearCookie("eua_token", { 
+    httpOnly: true, 
+    sameSite: "lax", 
+    secure: env.NODE_ENV === "production",
+  path: "/" 
+});
 }
 
 export function requireAuth(req, res, next) {
